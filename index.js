@@ -41,13 +41,17 @@ function bskye() {
 
     camera.position.z = 5;
 
+    var last = Date.now();
     animate();
 
     function animate() {
       requestAnimationFrame(animate);
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.015;
+      const next = Date.now();
+      const step = Math.min(next - last, 200) / 10;
+      last = next;
+      cube.rotation.x += 0.01 * step;
+      cube.rotation.y += 0.015 * step;
 
       renderer.render(scene, camera);
     }
